@@ -1,0 +1,6 @@
+{
+    "plan 1": {
+        "Mañana": ["Alimento 1", "Alimento 2"],
+        "Tarde": "Alimento 3"
+    }
+}
