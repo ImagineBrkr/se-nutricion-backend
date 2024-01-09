@@ -3,7 +3,44 @@
         "Recomendacion": "No se recomienda perder peso"
     },
     "plan 1": {
-        "Mañana": ["Alimento 1", "Alimento 2"],
-        "Tarde": "Alimento 3"
+        "Lacteos": {
+            "raciones_diarias": "2",
+            "opciones": {
+                "Leche": "200 ml",
+                "Yogur": "125 g",
+                "Queso fresco": "30 - 40 g",
+                "Otros quesos": "15 - 20 g"
+            }
+        },
+        "Carnes_pescados_huevos": {
+            "raciones_diarias": "2",
+            "opciones": {
+                "Carnes": "100 - 125 g",
+                "Pescados": "125 - 150 g",
+                "Huevos": "1 unidad"
+            }
+        },
+        "Cereales_legumbres": {
+            "raciones_diarias": "6",
+            "opciones": {
+                "Pan": "30 - 40 g",
+                "Cereales desayuno": "30 - 40 g",
+                "Arroz": "60 - 70 g",
+                "Pasta": "60 - 70 g",
+                "Legumbres": "60 - 70 g"
+            }
+        },
+        "Frutas": {
+            "raciones_diarias": "3",
+            "opciones": {
+                "Pieza mediana": "150 - 200 g",
+                "Vaso de zumo": "150 ml"
+            }
+        },
+        "Verduras_hortalizas": {
+            "raciones_diarias": "3",
+            "peso_racion": "100 - 200 g"
+        },
+        "Recomendacion": "test test"
     }
 }

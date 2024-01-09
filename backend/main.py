@@ -48,7 +48,7 @@ class NutritionPlan(KnowledgeEngine):
 
     @Rule(Hipertension(value='SI'))
     def rule3(self):
-        self.declare(Fact(plan='Plan para hipertensos'))
+        self.declare(Fact(plan=planes["plan 1"]))
 
 @app.route('/get_plan', methods=['POST'])
 def get_nutrition_plan():
@@ -110,7 +110,7 @@ def get_nutrition_plan():
     engine.run()
 
     plan = next((fact['plan'] for fact in engine.facts.values() if 'plan' in fact),
-                'Plan no encontrado')
+                {"Resultado": 'Plan no encontrado'})
     facts = {
         "edad": edad,
         "imc": imc
