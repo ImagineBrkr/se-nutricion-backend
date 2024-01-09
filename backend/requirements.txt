@@ -1,5 +1,4 @@
 Flask==3.0.0
-experta==1.9.4
 frozendict==2.3.8
 numpy
 matplotlib
