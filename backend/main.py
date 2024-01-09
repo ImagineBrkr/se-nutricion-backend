@@ -40,7 +40,7 @@ class NutritionPlan(KnowledgeEngine):
 
     @Rule(IMC(value="Delgado"))
     def rule1(self):
-        self.declare(Fact(plan='No se recomienda un plan'))
+        self.declare(Fact(plan=planes["plan delgado"]))
 
     @Rule(IMC(value='Sobrepeso'))
     def rule2(self):
