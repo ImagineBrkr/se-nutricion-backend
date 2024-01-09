@@ -116,7 +116,7 @@ def get_nutrition_plan():
         "imc": imc
 
     }
-    return jsonify({"plan": plan, "facts": facts})
+    return jsonify({"plan": dict(plan), "facts": facts})
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0', port = 5000, debug=True)
