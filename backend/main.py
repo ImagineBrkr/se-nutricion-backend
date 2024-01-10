@@ -91,7 +91,7 @@ def get_nutrition_plan():
        data.get('enfermedad_corazon').capitalize() not in ["Si", "No"] or \
        data.get('colesterol_alto').capitalize() not in ["Si", "No"] or \
        data.get('trigliceridos_alto').capitalize() not in ["Si", "No"]:
-        return "Datos inválidos", 400
+        return jsonify({"error": "Datos inválidos"}), 400
 
     engine = NutritionPlan()
     engine.reset()
