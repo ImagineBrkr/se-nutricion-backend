@@ -61,7 +61,8 @@
             {
                 "Tipo": "Pan",
                 "Raciones": 1,
-                "Frecuencia": "Diario en las mañanas",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
                 "Cantidad": "1",
                 "Opciones": [
                     "Integral",
@@ -145,7 +146,8 @@
             {
                 "Tipo": "Frutas",
                 "Raciones": 2,
-                "Frecuencia": "Diario en las mañanas",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
                 "Cantidad": "Unidades",
                 "Opciones": [
                     "Lima",
@@ -202,22 +204,428 @@
             }
         ]
     },
-    "Regimen hiposódico": {
-        "Nro_comidas": 0,
+    "Regimen hiposodico": {
+        "Nro_comidas": 5,
         "Recomendaciones": [
-            ""
+            "No consumo de Sal o uso de salero ",
+            "No utilizar envasados ( atunes, conservas)",
+            "Utilizar condimentos naturales: hierba buena, romero, pimentón, kion, orégano. etc.",
+            "Cereales: quinua, kiwicha, avena (hacer combinaciones diarias en desayunos y lonches por ejemplo (kiwicha con avena y alguna fruta como manzana, membrillo, etc)",
+            "Huevos: Consumo diario de 3 claras es importante por su alto valor nutritivo."
         ],
         "Alimentos": [
             {
-                "Tipo": "",
-                "Raciones": 0,
-                "Frecuencia": "",
-                "Cantidad": "",
+                "Tipo": "Leche",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "250 ml",
                 "Opciones": [
-                    ""
+                    "Evaporada light"
                 ],
-                "Preparacion": ""
+                "Preparacion": "Al natural. Ingredientes de preparación."
             },
+            {
+                "Tipo": "Queso",
+                "Raciones": 2,
+                "Frecuencia": "Semanal",
+                "Cantidad": "Porción estándar",
+                "Opciones": [
+                    "Fresco sin sal ni grasa"
+                ],
+                "Preparacion": "Al natural, preparaciones."
+            },
+            {
+                "Tipo": "Huevos",
+                "Frecuencia": "Diario",
+                "Raciones": 1,
+                "Cantidad": "3 claras",
+                "Opciones": [
+                    "Claras"
+                ],
+                "Preparacion": "Pasado duro en preparaciones."
+            },
+            {
+                "Tipo": "Pan",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "1 unidad",
+                "Opciones": [
+                    "Integral",
+                    "Tostadas",
+                    "Galletas"
+                ]
+            },
+            {
+                "Tipo": "Cereales",
+                "Frecuencia": "Diario",
+                "Cantidad": "Porción estándar",
+                "Opciones": [
+                    "Arroz",
+                    "Fideo",
+                    "Quinua",
+                    "Kiwicha",
+                    "Avena (sin colar)",
+                    "Trigo",
+                    "Sémola",
+                    "Mote",
+                    "Cancha (tostada sin aceite)"
+                ],
+                "Preparacion": "Sancochado, guiso."
+            },
+            {
+                "Tipo": "Menestras",
+                "Raciones": 3,
+                "Frecuencia": "Semanal",
+                "Cantidad": "Porción estándar",
+                "Opciones": [
+                    "Frijoles",
+                    "Lentejas",
+                    "Habas",
+                    "Arveja",
+                    "Pallares",
+                    "Soya",
+                    "Garbanzo"
+                ],
+                "Preparacion": "Guisadas, tortilla, ensaladas."
+            },
+            {
+                "Tipo": "Tubérculos",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "Porción estándar",
+                "Opciones": [
+                    "Papa",
+                    "Yuca",
+                    "Camote",
+                    "Olluco",
+                    "Oca"
+                ],
+                "Preparacion": "Sancochadas, al horno, ensaladas."
+            },
+            {
+                "Tipo": "Verduras y Hortalizas",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "Un plato grande",
+                "Opciones": [
+                    "Acelga",
+                    "Espinaca",
+                    "Calabaza",
+                    "Zapallo",
+                    "Alcachofa",
+                    "Brócoli",
+                    "Repollo",
+                    "Nabo",
+                    "Lechuga",
+                    "Tomate",
+                    "Berenjena",
+                    "Vainitas",
+                    "Zanahoria",
+                    "Pepinillo",
+                    "Espárrago",
+                    "Choclo"
+                ],
+                "Preparacion": "Ensaladas crudas o cocidas, saltadas, puré, guisos, tortillas."
+            },
+            {
+                "Tipo": "Frutas",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "3 unidades",
+                "Opciones": [
+                    "Lima",
+                    "Naranja",
+                    "Mandarina",
+                    "Durazno",
+                    "Pepino",
+                    "Piña",
+                    "Papaya",
+                    "Pera",
+                    "Melón",
+                    "Fresas",
+                    "Tuna",
+                    "Granadas",
+                    "Granadilla"
+                ],
+                "Preparacion": "Al natural, cocidas, jugos sin colar."
+            },
+            {
+                "Tipo": "Grasas",
+                "Frecuencia": "Diario",
+                "Opciones": [
+                    "Aceite vegetal",
+                    "Oliva",
+                    "Sachainchi"
+                ],
+                "Preparacion": "Para sazonar o como ingredientes de preparación."
+            },
+            {
+                "Tipo": "Condimentos",
+                "Frecuencia": "Diario",
+                "Opciones": [
+                    "Ajos",
+                    "Orégano",
+                    "Laurel",
+                    "Limón",
+                    "Vinagre",
+                    "Kion",
+                    "Clavo de olor",
+                    "Canela"
+                ]
+            },
+            {
+                "Tipo": "Líquidos",
+                "Frecuencia": "Diario",
+                "Cantidad": "2-2.5 Litros",
+                "Opciones": [
+                    "Agua",
+                    "Infusiones",
+                    "Limonadas",
+                    "Cebada"
+                ]
+            }
+        ]
+    },
+    "Regimen hipoglucida": {
+        "Nro_comidas": 0,
+        "Recomendaciones": [
+            "Consumir solo una porción de harina por comida: Arroz (80g) o papa 1 unidad o 1 camote pequeño o yuca o 1 choclo mediano, 100g de menestra u olluco u ocas.",
+            "Consumir todos los días frutas en porción aparte de los jugos.",
+            "Consumir verduras en diferentes preparaciones a diario",
+            "Consumir alimentos integrales como avena en hojuelas, galletas integrales, cereal integral.",
+            "NO CONSUMIR Azúcares concentrados como miel, mermelada, azúcar",
+            "NO CONSUMIR Bebidas gaseosas o jugos artificiales, bebidas alcohólicas, café.",
+            "NO CONSUMIR Carne de cerdo, piel del pollo, mayonesa, mantequilla, jamón."
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "Desayuno - Opción 1",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Bebida con leche descremada (1 vaso, 200ml)",
+                    "Galleta integral (2 unidades) o pan integral (1 unidad)",
+                    "Huevo cocido (1 unidad, 2 veces en semana) o clara cocida (1-2 unidades diaria)"
+                ]
+            },
+            {
+                "Tipo": "Desayuno - Opción 2",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Cereal (Avena, Quinua, Soya, Chufla, 1 taza, 200ml)",
+                    "1 porción de frutas o en jugo",
+                    "Huevo cocido (1 unidad, 2 veces en semana) o clara cocida (1 unidad diaria)"
+                ]
+            },
+            {
+                "Tipo": "Agregados para el desayuno",
+                "Frecuencia": "3 veces por semana",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Jamón de pavita o queso fresco light (50g o 3 tajadas)"
+                ]
+            },
+            {
+                "Tipo": "Media Mañana",
+                "Frecuencia": "Diario",
+                "Hora": "Media mañana",
+                "Opciones": [
+                    "1 o 2 frutas",
+                    "Medio litro de agua"
+                ]
+            },
+            {
+                "Tipo": "Almuerzo",
+                "Frecuencia": "Diario",
+                "Hora": "Mediodía",
+                "Opciones": [
+                    "Sopa de verduras (habas, zapallo, acelga, espinacas)",
+                    "Arroz (80g), papa (1 unidad), camote pequeño, yuca, choclo mediano, menestra (100g), olluco, ocas (Elegir uno, no mezclar)",
+                    "Ensalada de verduras sancochadas",
+                    "Pollo sin piel, pescado, pavita, gallina, atún (150g) - Carnes de otro tipo: 1 vez por semana",
+                    "Refresco sin azúcar o con edulcorante"
+                ]
+            },
+            {
+                "Tipo": "Media Tarde",
+                "Frecuencia": "Diario",
+                "Hora": "Media tarde",
+                "Opciones": [
+                    "Yogurt descremado (150 ml) con frutos secos (excepto maní) o 1 fruta (plátano máximo 2 veces por semana)"
+                ]
+            },
+            {
+                "Tipo": "Comida",
+                "Frecuencia": "Diario",
+                "Hora": "Noche",
+                "Opciones": [
+                    "Sopa de verduras con pollo, gallina o pescado",
+                    "100g de carne blanca + verduras + refresco sin azúcar o con edulcorante",
+                    "Leche descremada con galleta integral, 1 tostada o pan integral/de centeno"
+                ]
+            }
+        ]
+    },
+    "Regimen hipgraso": {
+        "Nro_comidas": 0,
+        "Recomendaciones": [
+            "EVITA: Alimentos envasados, GASEOSAS, FRUGOS, productos de  pastelería, edulcorantes, café, embutidos hot-dog, mortadela, mostaza, frituras, chorizos, jamón, parrilladas,  sopitas instantáneas, contiene grasa saturada, te llevan al sobrepeso, obesidad, colesterol y triglicéridos elevados ,además aumenta el cáncer.",
+            "TOME LIQUIDOS abundantes como, infusiones de manzanilla, anís, hierba luisa, chicha morada, muña, menta, emolientes, linaza, hojas y tallos de guanábana.etc.",
+            "SI presenta diarrea evite las verduras y fibra."
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "Huevos",
+                "Frecuencia": "Diario",
+                "Cantidad": "1 huevo + 3 claras o huevos de codorniz",
+                "Opciones": [
+                    "Huevos de gallina",
+                    "Huevos de codorniz"
+                ],
+                "Preparacion": "Escalfado, duro, pasado o en sopas, purés. Evitar freír. Lavar bien la cáscara antes de preparar."
+            },
+            {
+                "Tipo": "Carnes, Aves, Pescados",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "1 porción",
+                "Opciones": [
+                    "Carnes (gallo, cuy, conejo, pichones, pollo, pavita, cordero, hígado, bazo de res, sangresita)",
+                    "Pescados (merluza, cachema, pejerrey, tollo, trucha, pampanito, caballa, jurel, bonito, anchoveta)"
+                ],
+                "Preparacion": "Bien cocido. Sudado, sancochado, al vapor, a la plancha, olla, horno, estofado y sin grasa. Nada crudo, evitar frituras."
+            },
+            {
+                "Tipo": "Cereales",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "1 Ración (ejm. ½ taza de quinua + arroz)",
+                "Opciones": [
+                    "Arroz",
+                    "Linaza",
+                    "Quinua",
+                    "Cañihua",
+                    "Kiwicha",
+                    "Maíz y derivados (como Maicena)",
+                    "Avena",
+                    "Sémola",
+                    "Molidos de trigo",
+                    "Cebada",
+                    "Pan integrales de agua",
+                    "Germen de trigo"
+                ],
+                "Preparacion": "Sancochado, en sopas, arroz, purés, espesados, mazamorras. Todo cocido."
+            },
+            {
+                "Tipo": "Tubérculos y Raíces",
+                "Frecuencia": "Diario",
+                "Cantidad": "1 a 2 en cada comida (ejm. puré, sopa, sancochada)",
+                "Opciones": [
+                    "Papa",
+                    "Camote",
+                    "Yuca",
+                    "Ollucos",
+                    "Mashua",
+                    "Arracacha",
+                    "Chuño",
+                    "Maca",
+                    "Oca"
+                ],
+                "Preparacion": "Evitar papa frita, papa rellena."
+            },
+            {
+                "Tipo": "Verduras A",
+                "Frecuencia": "Diario",
+                "Cantidad": "1 a 3 colores en la ensalada",
+                "Opciones": [
+                    "Acelga",
+                    "Apio",
+                    "Alcachofa",
+                    "Pimiento",
+                    "Zapallo",
+                    "Espinaca",
+                    "Vainitas",
+                    "Col",
+                    "Berros"
+                ],
+                "Preparacion": "Cocido o en sopas. Vapor, en sopa, saltada, bien hervido."
+            },
+            {
+                "Tipo": "Verduras B",
+                "Frecuencia": "Diario",
+                "Opciones": [
+                    "Arverja verde",
+                    "Habas verdes",
+                    "Frijol",
+                    "Pallares verdes",
+                    "Zanahoria",
+                    "Betarraga"
+                ],
+                "Preparacion": "Sancochado, al vapor, en sopas. Evitar crudas."
+            },
+            {
+                "Tipo": "Frutas",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "Unidades",
+                "Opciones": [
+                    "Papaya",
+                    "Melón",
+                    "Lúcuma",
+                    "Higo",
+                    "Pera",
+                    "Menbrillo",
+                    "Platano",
+                    "Uvas",
+                    "Durazno",
+                    "Manzana",
+                    "Melon",
+                    "Sauco",
+                    "Aguaymanto",
+                    "Guanábana",
+                    "Higos",
+                    "Tunas",
+                    "Kiwi",
+                    "Charalina",
+                    "Frutas secas (pecanas, nueces, almendras, pasas)"
+                ],
+                "Preparacion": "Diferentes preparaciones cocidas. Lavar bien antes de consumir."
+            },
+            {
+                "Tipo": "Semillas",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "2 cucharadas tostadas",
+                "Opciones": [
+                    "Semillas de Girasol",
+                    "Ajonjolí",
+                    "Linaza",
+                    "Chía",
+                    "Zapallo"
+                ],
+                "Preparacion": "Lavar bien y tostar."
+            },
+            {
+                "Tipo": "Grasas",
+                "Frecuencia": "Diario",
+                "Cantidad": "1 a 2 cucharadas para ensalada",
+                "Opciones": [
+                    "Aceite de Oliva",
+                    "Sachainchi"
+                ],
+                "Preparacion": "Solo para ensalada. Evitar recalentar."
+            },
+            {
+                "Tipo": "Azúcar",
+                "Frecuencia": "Según necesidad",
+                "Cantidad": "1 a 2 cucharadas",
+                "Opciones": [
+                    "Stevia",
+                    "Miel de abeja",
+                    "Algarrobina"
+                ]
+            }
         ]
     }
 }

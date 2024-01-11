@@ -36,20 +36,28 @@ class NivelTrigliceridos(Fact):
 class NutritionPlan(KnowledgeEngine):
 
     @Rule(IMC(value="Delgado"))
-    def rule1(self):
-        self.declare(Fact(plan=planes["Regimen delgado"]))
+    def ruleDelgado(self):
+        self.declare(Fact(plan="Regimen delgado"))
+
+    @Rule(Hipertension(value='Si'))
+    def ruleHipertension(self):
+        self.declare(Fact(plan="Regimen hiposodico"))
+
+    @Rule(Diabetes(value='Si'))
+    def ruleDiabetes(self):
+        self.declare(Fact(plan="Regimen hipoglucida"))
 
     @Rule(IMC(value='Sobrepeso'))
-    def rule2(self):
-        self.declare(Fact(plan=planes["Regimen sobrepeso-obesidad"]))
+    def ruleSobrepeso(self):
+        self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
 
     @Rule(IMC(value='Obeso'))
-    def rule3(self):
-        self.declare(Fact(plan=planes["Regimen sobrepeso-obesidad"]))
+    def ruleObeso(self):
+        self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
 
-    @Rule(Hipertension(value='SI'))
-    def rule4(self):
-        self.declare(Fact(plan=planes["plan 1"]))
+    @Rule(IMC(value='Normal'))
+    def ruleNormal(self):
+        self.declare(Fact(plan="Regimen hipograso"))
 
 @app.route('/get_plan', methods=['POST'])
 def get_nutrition_plan():
@@ -123,13 +131,13 @@ def get_nutrition_plan():
     engine.run()
 
     plan = next((fact['plan'] for fact in engine.facts.values() if 'plan' in fact),
-                {"Resultado": 'Plan no encontrado'})
+                "Regimen hipograso")
     facts = {
         "edad": edad,
-        "imc": imc
-
+        "imc": imc,
+        "icc": icc
     }
-    return jsonify({"plan": dict(plan), "facts": facts})
+    return jsonify({"plan": planes[plan], "Nombre regimen": plan, "facts": facts})
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0', port = 5000, debug=True)

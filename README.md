@@ -65,6 +65,7 @@ Si la petición es exitosa, el response tendrá el siguiente formato:
                 "Tipo": "string (tipo de alimento)",
                 "Raciones": "int (cantidad recomendada) (OPCIONAL)",
                 "Frecuencia": "string (frecuencia de consumo)",
+                "Hora": "string (hora a la que se consume) (OPCIONAL)",
                 "Cantidad": "string (medida de la porción) (OPCIONAL)",
                 "Opciones": [
                     "string (opciones disponibles del alimento)"
@@ -73,6 +74,7 @@ Si la petición es exitosa, el response tendrá el siguiente formato:
             }
         ]
     },
+    "Nombre regimen": "string (Nombre del regimen)",
     "facts": {
         "edad": "string (niño, adulto)",
         "imc": "string (delgado, normal, sobrepeso, obeso)"
