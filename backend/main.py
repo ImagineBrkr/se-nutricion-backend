@@ -1,5 +1,6 @@
 from collections.abc import Mapping
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from experta import KnowledgeEngine, Rule, Fact, DefFacts, AS, P
 import json
 from collections.abc import Mapping
@@ -8,6 +9,7 @@ with open('planes.json', 'r', encoding='utf-8') as f:
     planes = json.load(f)
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:8100"}})
 
 class ICC(Fact):
     value = None
