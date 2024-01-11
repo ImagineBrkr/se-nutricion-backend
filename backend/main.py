@@ -74,7 +74,7 @@ class NutritionPlan(KnowledgeEngine):
         self.declare(Fact(plan="Regimen hipograso"))
 
     @Rule(ICC(value='Preocupante'))
-    def ruleIccGrave(self):
+    def ruleIccPreocupante(self):
         self.declare(Fact(plan="Regimen hipograso"))
 
     @Rule(IMC(value='Normal'))
