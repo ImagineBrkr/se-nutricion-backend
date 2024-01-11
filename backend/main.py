@@ -1,5 +1,6 @@
 from collections.abc import Mapping
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from experta import KnowledgeEngine, Rule, Fact, DefFacts, AS, P
 import json
 from collections.abc import Mapping
