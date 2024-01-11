@@ -30,10 +30,10 @@ class Hipertension(Fact):
 class EnfermedadCorazon(Fact):
     value = None
 
-class NivelColesterol(Fact):
+class ColesterolAlto(Fact):
     value = None
 
-class NivelTrigliceridos(Fact):
+class TrigliceridosAlto(Fact):
     value = None
 
 class NutritionPlan(KnowledgeEngine):
@@ -52,6 +52,14 @@ class NutritionPlan(KnowledgeEngine):
 
     @Rule(EnfermedadCorazon(value='Si'))
     def ruleCorazon(self):
+        self.declare(Fact(plan="Regimen hipograso"))
+
+    @Rule(ColesterolAlto(value='Si'))
+    def ruleColesterol(self):
+        self.declare(Fact(plan="Regimen hipograso"))
+
+    @Rule(TrigliceridosAlto(value='Si'))
+    def ruleTrigliceridos(self):
         self.declare(Fact(plan="Regimen hipograso"))
 
     @Rule(IMC(value='Sobrepeso'), Edad(value="Niño"))
@@ -102,6 +110,8 @@ def get_nutrition_plan():
         talla = float(data.get('talla'))
         circunferencia_cintura = float(data.get('circunferencia_cintura'))
         circunferencia_cadera = float(data.get('circunferencia_cadera'))
+        if edad < 0 or peso <= 0 or talla <= 0 or circunferencia_cintura <= 0 or circunferencia_cadera <= 0:
+            return jsonify({"error": "Los valores numéricos deben ser positivos"}), 400
     except (ValueError, TypeError):
         return jsonify({"error": "Datos numéricos inválidos"}), 400
     
@@ -115,7 +125,7 @@ def get_nutrition_plan():
     if not isinstance(genero, str) or genero not in ["m", "f"]:
         return jsonify({"error": "Datos inválidos en el campo genero"}), 400
 
-    edad = "Niño" if data.get('edad', 0) < 18 else "Adulto"
+    edad = "Niño" if data.get('edad', 0) < 15 else "Adulto"
     peso = data.get('peso', 0)
     talla = data.get('talla', 0)
     valor_imc = peso / (talla / 100) ** 2 if talla > 0 else 0
@@ -151,8 +161,8 @@ def get_nutrition_plan():
                    Diabetes(value=data.get('diabetes').capitalize()),
                    Hipertension(value=data.get('hipertension').capitalize()),
                    EnfermedadCorazon(value=data.get('enfermedad_corazon').capitalize()),
-                   NivelColesterol(value=data.get('colesterol_alto').capitalize()),
-                   NivelTrigliceridos(value=data.get('trigliceridos_alto').capitalize()))
+                   ColesterolAlto(value=data.get('colesterol_alto').capitalize()),
+                   TrigliceridosAlto(value=data.get('trigliceridos_alto').capitalize()))
 
     engine.run()
 

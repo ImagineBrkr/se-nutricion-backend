@@ -587,7 +587,7 @@
         ]
     },
     "Regimen hipoglucida": {
-        "Nro_comidas": 0,
+        "Nro_comidas": 5,
         "Recomendaciones": [
             "Consumir solo una porción de harina por comida: Arroz (80g) o papa 1 unidad o 1 camote pequeño o yuca o 1 choclo mediano, 100g de menestra u olluco u ocas.",
             "Consumir todos los días frutas en porción aparte de los jugos.",
@@ -668,7 +668,7 @@
         ]
     },
     "Regimen hipograso": {
-        "Nro_comidas": 0,
+        "Nro_comidas": 5,
         "Recomendaciones": [
             "EVITA: Alimentos envasados, GASEOSAS, FRUGOS, productos de  pastelería, edulcorantes, café, embutidos hot-dog, mortadela, mostaza, frituras, chorizos, jamón, parrilladas,  sopitas instantáneas, contiene grasa saturada, te llevan al sobrepeso, obesidad, colesterol y triglicéridos elevados ,además aumenta el cáncer.",
             "TOME LIQUIDOS abundantes como, infusiones de manzanilla, anís, hierba luisa, chicha morada, muña, menta, emolientes, linaza, hojas y tallos de guanábana.etc.",
