@@ -9,16 +9,13 @@ with open('planes.json', 'r', encoding='utf-8') as f:
 
 app = Flask(__name__)
 
+class ICC(Fact):
+    value = None
+
 class Edad(Fact):
     value = None
 
 class IMC(Fact):
-    value = None
-
-class CircunferenciaCintura(Fact):
-    value = None
-
-class CircunferenciaCadera(Fact):
     value = None
 
 class Diabetes(Fact):
@@ -40,21 +37,26 @@ class NutritionPlan(KnowledgeEngine):
 
     @Rule(IMC(value="Delgado"))
     def rule1(self):
-        self.declare(Fact(plan=planes["plan delgado"]))
+        self.declare(Fact(plan=planes["Regimen delgado"]))
 
     @Rule(IMC(value='Sobrepeso'))
     def rule2(self):
-        self.declare(Fact(plan=planes["plan 1"]))
+        self.declare(Fact(plan=planes["Regimen sobrepeso-obesidad"]))
+
+    @Rule(IMC(value='Obeso'))
+    def rule3(self):
+        self.declare(Fact(plan=planes["Regimen sobrepeso-obesidad"]))
 
     @Rule(Hipertension(value='SI'))
-    def rule3(self):
+    def rule4(self):
         self.declare(Fact(plan=planes["plan 1"]))
 
 @app.route('/get_plan', methods=['POST'])
 def get_nutrition_plan():
     data = request.get_json()
 
-    campos_requeridos = ['edad', 'peso', 'talla', 'diabetes', 'hipertension',
+    campos_requeridos = ['genero', 'edad', 'peso', 'talla', 'diabetes', 'hipertension',
+                         'circunferencia_cintura', 'circunferencia_cadera',
                          'enfermedad_corazon', 'colesterol_alto', 'trigliceridos_alto']
 
     if not all(campo in data for campo in campos_requeridos):
@@ -64,6 +66,8 @@ def get_nutrition_plan():
         edad = int(data.get('edad'))
         peso = float(data.get('peso'))
         talla = float(data.get('talla'))
+        circunferencia_cintura = float(data.get('circunferencia_cintura'))
+        circunferencia_cadera = float(data.get('circunferencia_cadera'))
     except ValueError:
         return jsonify({"error": "Datos numéricos inválidos"}), 400
     
@@ -72,6 +76,10 @@ def get_nutrition_plan():
         valor = data.get(campo)
         if not isinstance(valor, str) or valor.capitalize() not in ["Si", "No"]:
             return jsonify({"error": "Datos inválidos en el campo " + campo}), 400
+    
+    genero = data.get('genero')
+    if not isinstance(genero, str) or genero not in ["m", "f"]:
+        return jsonify({"error": "Datos inválidos en el campo genero"}), 400
 
     edad = "Niño" if data.get('edad', 0) < 18 else "Adulto"
     peso = data.get('peso', 0)
@@ -86,26 +94,31 @@ def get_nutrition_plan():
     else:
         imc = "Obeso"
 
-    if data.get('diabetes').capitalize() not in ["Si", "No"] or \
-       data.get('hipertension').capitalize() not in ["Si", "No"] or \
-       data.get('enfermedad_corazon').capitalize() not in ["Si", "No"] or \
-       data.get('colesterol_alto').capitalize() not in ["Si", "No"] or \
-       data.get('trigliceridos_alto').capitalize() not in ["Si", "No"]:
-        return jsonify({"error": "Datos inválidos"}), 400
+    if genero == 'm':
+        if circunferencia_cintura < 94:
+            icc = "Normal"
+        elif circunferencia_cintura <= 102:
+            icc = "Preocupante"
+        else:
+            icc = "Grave"
+    elif genero == 'f':
+        if circunferencia_cintura < 80:
+            icc = "Normal"
+        elif circunferencia_cintura <= 88:
+            icc = "Preocupante"
+        else:
+            icc = "Grave"
 
     engine = NutritionPlan()
     engine.reset()
     engine.declare(Edad(value=edad),
                    IMC(value=imc),
+                   ICC(value=icc),
                    Diabetes(value=data.get('diabetes').capitalize()),
                    Hipertension(value=data.get('hipertension').capitalize()),
                    EnfermedadCorazon(value=data.get('enfermedad_corazon').capitalize()),
                    NivelColesterol(value=data.get('colesterol_alto').capitalize()),
                    NivelTrigliceridos(value=data.get('trigliceridos_alto').capitalize()))
-    # Si CircunferenciaCintura y CircunferenciaCadera están presentes, también decláralos
-    if 'circunferencia_cintura' in data and 'circunferencia_cadera' in data:
-        engine.declare(CircunferenciaCintura(value=data['circunferencia_cintura']),
-                       CircunferenciaCadera(value=data['circunferencia_cadera']))
 
     engine.run()
 

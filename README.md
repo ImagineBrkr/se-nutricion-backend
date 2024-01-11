@@ -18,6 +18,7 @@ Para realizar una petición al backend, debes enviar un JSON con la siguiente es
 
 ```json
 {
+    "genero": "m",
     "edad": 25,
     "peso": 40.0,
     "talla": 120.0,
@@ -33,11 +34,12 @@ Para realizar una petición al backend, debes enviar un JSON con la siguiente es
 
 ### Campos del Request
 
+- `genero`: String  (`m` o `f`).
 - `edad`: Entero.
 - `peso`: Float.
 - `talla`: Float.
-- `circunferencia_cintura`: Float. (opcional)
-- `circunferencia_cadera`: Float. (opcional)
+- `circunferencia_cintura`: Float.
+- `circunferencia_cadera`: Float.
 - `diabetes`: String (`si` o `no`).
 - `hipertension`: String (`si` o `no`).
 - `enfermedad_corazon`: String (`si` o `no`).
@@ -53,7 +55,24 @@ Si la petición es exitosa, el response tendrá el siguiente formato:
 
 ```json
 {
-    "plan": "JSON con el plan",
+    "plan": {
+        "Nro_comidas": "int (número de comidas por día)",
+        "Recomendaciones": [
+            "string (lista de recomendaciones generales)"
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "string (tipo de alimento)",
+                "Raciones": "int o string (cantidad recomendada) (OPCIONAL)",
+                "Tiempo": "string (frecuencia de consumo)",
+                "Cantidad": "string (medida de la porción) (OPCIONAL)",
+                "Opciones": [
+                    "string (opciones disponibles del alimento)"
+                ],
+                "Preparacion": "string (método de preparación sugerido) (OPCIONAL)"
+            }
+        ]
+    },
     "facts": {
         "edad": "string (niño, adulto)",
         "imc": "string (delgado, normal, sobrepeso, obeso)"
