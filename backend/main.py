@@ -9,7 +9,7 @@ with open('planes.json', 'r', encoding='utf-8') as f:
     planes = json.load(f)
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:8100"}})
+CORS(app)
 
 class ICC(Fact):
     value = None
