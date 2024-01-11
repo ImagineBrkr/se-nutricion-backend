@@ -15,7 +15,7 @@
             {
                 "Tipo": "Leche",
                 "Raciones": 2,
-                "Tiempo": "Diario",
+                "Frecuencia": "Diario",
                 "Cantidad": "Unidad",
                 "Opciones": [
                     "Evaporada descremada",
@@ -26,7 +26,7 @@
             {
                 "Tipo": "Queso",
                 "Raciones": 2,
-                "Tiempo": "Semanal",
+                "Frecuencia": "Semanal",
                 "Cantidad": "Tajadas de 50g",
                 "Opciones": [
                     "Fresco sin sal ni grasa"
@@ -36,7 +36,7 @@
             {
                 "Tipo": "Huevo",
                 "Raciones": 3,
-                "Tiempo": "Diario",
+                "Frecuencia": "Diario",
                 "Cantidad": "3 claras",
                 "Opciones": [
                     "1 unidad entera, 2 claras"
@@ -46,7 +46,7 @@
             {
                 "Tipo": "Carne",
                 "Raciones": 2,
-                "Tiempo": "Diario",
+                "Frecuencia": "Diario",
                 "Cantidad": "2 raciones de 150g",
                 "Opciones": [
                     "Pescado fresco (caballa, jurel)",
@@ -61,7 +61,7 @@
             {
                 "Tipo": "Pan",
                 "Raciones": 1,
-                "Tiempo": "Diario en las mañanas",
+                "Frecuencia": "Diario en las mañanas",
                 "Cantidad": "1",
                 "Opciones": [
                     "Integral",
@@ -72,7 +72,7 @@
             {
                 "Tipo": "Cereales",
                 "Raciones": 5,
-                "Tiempo": "Semanal",
+                "Frecuencia": "Semanal",
                 "Cantidad": "1 porción",
                 "Opciones": [
                     "Arroz",
@@ -90,7 +90,7 @@
             {
                 "Tipo": "Menestras",
                 "Raciones": 3,
-                "Tiempo": "Semanal",
+                "Frecuencia": "Semanal",
                 "Cantidad": "1 porción",
                 "Opciones": [
                     "Frijoles",
@@ -106,7 +106,7 @@
             {
                 "Tipo": "Tubérculos",
                 "Raciones": 1,
-                "Tiempo": "diario",
+                "Frecuencia": "diario",
                 "Cantidad": "1 porción",
                 "Opciones": [
                     "Papa",
@@ -120,7 +120,7 @@
             {
                 "Tipo": "Verduras y hortalizas",
                 "Raciones": 2,
-                "Tiempo": "Diario",
+                "Frecuencia": "Diario",
                 "Cantidad": "1 plato mediano",
                 "Opciones": [
                     "Acelga",
@@ -145,7 +145,7 @@
             {
                 "Tipo": "Frutas",
                 "Raciones": 2,
-                "Tiempo": "Diario en las mañanas",
+                "Frecuencia": "Diario en las mañanas",
                 "Cantidad": "Unidades",
                 "Opciones": [
                     "Lima",
@@ -166,7 +166,7 @@
             {
                 "Tipo": "Grasas",
                 "Raciones": 1,
-                "Tiempo": "Diario",
+                "Frecuencia": "Diario",
                 "Cantidad": "1 sazón",
                 "Opciones": [
                     "Aceite vegetal",
@@ -191,7 +191,7 @@
             {
                 "Tipo": "Líquidos",
                 "Raciones": 1,
-                "Tiempo": "Diario antes de las 6pm",
+                "Frecuencia": "Diario antes de las 6pm",
                 "Cantidad": "3 litros",
                 "Opciones": [
                     "Agua",
@@ -203,6 +203,21 @@
         ]
     },
     "Regimen hiposódico": {
-
+        "Nro_comidas": 0,
+        "Recomendaciones": [
+            ""
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "",
+                "Raciones": 0,
+                "Frecuencia": "",
+                "Cantidad": "",
+                "Opciones": [
+                    ""
+                ],
+                "Preparacion": ""
+            },
+        ]
     }
 }

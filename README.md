@@ -63,8 +63,8 @@ Si la petición es exitosa, el response tendrá el siguiente formato:
         "Alimentos": [
             {
                 "Tipo": "string (tipo de alimento)",
-                "Raciones": "int o string (cantidad recomendada) (OPCIONAL)",
-                "Tiempo": "string (frecuencia de consumo)",
+                "Raciones": "int (cantidad recomendada) (OPCIONAL)",
+                "Frecuencia": "string (frecuencia de consumo)",
                 "Cantidad": "string (medida de la porción) (OPCIONAL)",
                 "Opciones": [
                     "string (opciones disponibles del alimento)"
