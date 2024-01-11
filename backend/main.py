@@ -3,11 +3,13 @@ from flask import Flask, request, jsonify
 from experta import KnowledgeEngine, Rule, Fact, DefFacts, AS, P
 import json
 from collections.abc import Mapping
+from flask_cors import CORS
 
 with open('planes.json', 'r', encoding='utf-8') as f:
     planes = json.load(f)
 
 app = Flask(__name__)
+CORS(app)
 
 class ICC(Fact):
     value = None
@@ -47,6 +49,18 @@ class NutritionPlan(KnowledgeEngine):
     def ruleDiabetes(self):
         self.declare(Fact(plan="Regimen hipoglucida"))
 
+    @Rule(EnfermedadCorazon(value='Si'))
+    def ruleCorazon(self):
+        self.declare(Fact(plan="Regimen hipograso"))
+
+    @Rule(IMC(value='Sobrepeso'), Edad(value="Niño"))
+    def ruleSobrepesoNiño(self):
+        self.declare(Fact(plan="Regimen sobrepeso-obesidad niño"))
+
+    @Rule(IMC(value='Obeso'), Edad(value="Niño"))
+    def ruleObesoNiño(self):
+        self.declare(Fact(plan="Regimen sobrepeso-obesidad niño"))
+
     @Rule(IMC(value='Sobrepeso'))
     def ruleSobrepeso(self):
         self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
@@ -54,6 +68,14 @@ class NutritionPlan(KnowledgeEngine):
     @Rule(IMC(value='Obeso'))
     def ruleObeso(self):
         self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
+
+    @Rule(ICC(value='Grave'))
+    def ruleIccGrave(self):
+        self.declare(Fact(plan="Regimen hipograso"))
+
+    @Rule(ICC(value='Preocupante'))
+    def ruleIccGrave(self):
+        self.declare(Fact(plan="Regimen hipograso"))
 
     @Rule(IMC(value='Normal'))
     def ruleNormal(self):

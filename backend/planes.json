@@ -204,6 +204,206 @@
             }
         ]
     },
+    "Regimen sobrepeso-obesidad niño": {
+        "Nro_comidas": 6,
+        "Recomendaciones": [
+            "Consistencia: solida (evitar caldos, sopas ya que tienen poco valor nutricional.)",
+            "Utilizar condimentos naturales: hierba buena, romero, pimentón, kion, orégano. etc.",
+            "Actividad física diaria de 45 minutos ( 1er mes de caminata , 2do mes ejercicio cardiovascular)"
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "Leche",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "Unidad",
+                "Opciones": [
+                    "Evaporada descremada",
+                    "Deslactosada"
+                ],
+                "Preparacion": "Al natural. Ingredientes de preparación."
+            },
+            {
+                "Tipo": "Queso",
+                "Raciones": 2,
+                "Frecuencia": "Semanal",
+                "Cantidad": "Tajadas de 50g",
+                "Opciones": [
+                    "Fresco sin sal ni grasa"
+                ],
+                "Preparacion": "Al natural preparaciones."
+            },
+            {
+                "Tipo": "Huevo",
+                "Raciones": 3,
+                "Frecuencia": "Diario",
+                "Cantidad": "3 claras",
+                "Opciones": [
+                    "1 unidad entera, 2 claras"
+                ],
+                "Preparacion": "Pasado duro en preparaciones."
+            },
+            {
+                "Tipo": "Carne",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "2 raciones de 150g",
+                "Opciones": [
+                    "Pescado fresco (caballa, jurel)",
+                    "Pollo",
+                    "Gallina",
+                    "Pavita (sin piel)",
+                    "Carme de res o cabrito",
+                    "Cuy"
+                ],
+                "Preparacion": "Guisos, saltados, plancha, sudado, al horno."
+            },
+            {
+                "Tipo": "Pan",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Cantidad": "1",
+                "Opciones": [
+                    "Integral",
+                    "Tostadas",
+                    "Galletas"
+                ]
+            },
+            {
+                "Tipo": "Cereales",
+                "Raciones": 5,
+                "Frecuencia": "Semanal",
+                "Cantidad": "1 porción",
+                "Opciones": [
+                    "Arroz",
+                    "Fideo",
+                    "Quinua",
+                    "Kiwicha",
+                    "Avena (sin colar)",
+                    "Trigo",
+                    "Sémola",
+                    "Mote",
+                    "Cancha (tostada sin aceite)"
+                ],
+                "Preparacion": "Sancochado, guiso"
+            },
+            {
+                "Tipo": "Menestras",
+                "Raciones": 3,
+                "Frecuencia": "Semanal",
+                "Cantidad": "1 porción",
+                "Opciones": [
+                    "Frijoles",
+                    "Lentejas",
+                    "Habas",
+                    "Arveja",
+                    "Pallares",
+                    "Soya",
+                    "Garbanzo"
+                ],
+                "Preparacion": "Guisadas, tortilla, ensaladas"
+            },
+            {
+                "Tipo": "Tubérculos",
+                "Raciones": 1,
+                "Frecuencia": "diario",
+                "Cantidad": "1 porción",
+                "Opciones": [
+                    "Papa",
+                    "Yuca",
+                    "Camote",
+                    "Oyuco",
+                    "Oca"
+                ],
+                "Preparacion": "Sancochadas, al horno, ensaladas"
+            },
+            {
+                "Tipo": "Verduras y hortalizas",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Cantidad": "1 plato mediano",
+                "Opciones": [
+                    "Acelga",
+                    "Espinaca",
+                    "Calabaza",
+                    "Zapallo",
+                    "Alcachofa",
+                    "Brócoli",
+                    "Repollo",
+                    "Nabo",
+                    "Lechuga",
+                    "Tomate",
+                    "Berenjena",
+                    "Vainitas",
+                    "Zanahoria",
+                    "Pepinillo",
+                    "Esparrago",
+                    "Choclo"
+                ],
+                "Preparacion": "Ensaladas crudas o cocidas, saltadas, puré, guisos, tortillas"
+            },
+            {
+                "Tipo": "Frutas",
+                "Raciones": 2,
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Cantidad": "Unidades",
+                "Opciones": [
+                    "Lima",
+                    "Naranja",
+                    "Mandarina",
+                    "Durazno",
+                    "Pepino",
+                    "Piña",
+                    "Papaya",
+                    "Melón",
+                    "Fresas",
+                    "Tuna",
+                    "Granadas",
+                    "Granadilla"
+                ],
+                "Preparacion": "Al natural, cocidas, jugos s/ colar."
+            },
+            {
+                "Tipo": "Grasas",
+                "Raciones": 1,
+                "Frecuencia": "Diario",
+                "Cantidad": "1 sazón",
+                "Opciones": [
+                    "Aceite vegetal",
+                    "Oliva",
+                    "Sachainchi"
+                ],
+                "Preparacion": "Para sazonar o como ingredientes de preparación."
+            },
+            {
+                "Tipo": "Condimentos",
+                "Opciones": [
+                    "Ajo",
+                    "Orégano",
+                    "Laurel",
+                    "Limón",
+                    "Vinagre",
+                    "Kion",
+                    "Clavo de olor",
+                    "Canela"
+                ]
+            },
+            {
+                "Tipo": "Líquidos",
+                "Raciones": 1,
+                "Frecuencia": "Diario antes de las 6pm",
+                "Cantidad": "3 litros",
+                "Opciones": [
+                    "Agua",
+                    "Limonada",
+                    "Infusiones",
+                    "Cebada"
+                ]
+            }
+        ]
+    },
     "Regimen hiposodico": {
         "Nro_comidas": 5,
         "Recomendaciones": [

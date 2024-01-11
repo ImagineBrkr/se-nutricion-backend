@@ -3,3 +3,5 @@
 **/.angular
 **/.env
 **/logs**
+**/output.txt
+**/resultados_sistema_experto.csv
