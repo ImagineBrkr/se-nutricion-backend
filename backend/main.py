@@ -92,6 +92,9 @@ def get_nutrition_plan():
 
     if not all(campo in data for campo in campos_requeridos):
         return jsonify({"error": "Faltan datos requeridos"}), 400
+    for campo in campos_requeridos:
+        if data.get(campo) is None:
+            return jsonify({"error": f"Campo {campo} no puede ser nulo"}), 400
 
     try:
         edad = int(data.get('edad'))
@@ -99,7 +102,7 @@ def get_nutrition_plan():
         talla = float(data.get('talla'))
         circunferencia_cintura = float(data.get('circunferencia_cintura'))
         circunferencia_cadera = float(data.get('circunferencia_cadera'))
-    except ValueError:
+    except (ValueError, TypeError):
         return jsonify({"error": "Datos numéricos inválidos"}), 400
     
     campos_texto = ['diabetes', 'hipertension', 'enfermedad_corazon', 'colesterol_alto', 'trigliceridos_alto']

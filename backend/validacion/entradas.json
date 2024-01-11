@@ -102,5 +102,57 @@
         "enfermedad_corazon": "no",
         "colesterol_alto": "si",
         "trigliceridos_alto": "no"
+    },
+    {
+        "genero": "z",
+        "edad": "cuarenta",
+        "peso": "noventa y cinco",
+        "talla": "dos metros",
+        "circunferencia_cintura": "cien",
+        "circunferencia_cadera": "ciento diez",
+        "diabetes": 2,
+        "hipertension": 3,
+        "enfermedad_corazon": -1,
+        "colesterol_alto": "quizá",
+        "trigliceridos_alto": "no lo sé"
+    },
+    {
+        "genero": "",
+        "edad": 0,
+        "peso": -50,
+        "talla": 500,
+        "circunferencia_cintura": 20,
+        "circunferencia_cadera": 10,
+        "diabetes": "quizás",
+        "hipertension": "a veces",
+        "enfermedad_corazon": "nunca",
+        "colesterol_alto": "siempre",
+        "trigliceridos_alto": "raramente"
+    },
+    {
+        "genero": "femenino",
+        "edad": "veintidós",
+        "peso": "sesenta kilos",
+        "talla": "un metro sesenta",
+        "circunferencia_cintura": "sesenta y cinco centímetros",
+        "circunferencia_cadera": "ochenta y cinco centímetros",
+        "diabetes": "posiblemente",
+        "hipertension": "tal vez",
+        "enfermedad_corazon": "no aplicable",
+        "colesterol_alto": "probablemente",
+        "trigliceridos_alto": "improbable"
+    },
+    {
+        "genero": null,
+        "edad": null,
+        "peso": null,
+        "talla": null,
+        "circunferencia_cintura": null,
+        "circunferencia_cadera": null,
+        "diabetes": null,
+        "hipertension": null,
+        "enfermedad_corazon": null,
+        "colesterol_alto": null,
+        "trigliceridos_alto": null
     }
 ]
