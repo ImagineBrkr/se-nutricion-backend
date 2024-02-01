@@ -1,7 +1,8 @@
 from collections.abc import Mapping
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from experta import KnowledgeEngine, Rule, Fact, DefFacts, AS, P
+from experta import *
 import json
 from collections.abc import Mapping
 from flask_cors import CORS
@@ -38,57 +39,52 @@ class TrigliceridosAlto(Fact):
 
 class NutritionPlan(KnowledgeEngine):
 
-    @Rule(IMC(value="Delgado"))
+    @Rule(OR(IMC(value="Delgado"),
+             Edad(value="Muy niño")), salience=10)
     def ruleDelgado(self):
         self.declare(Fact(plan="Regimen delgado"))
 
-    @Rule(Hipertension(value='Si'))
+    @Rule(Hipertension(value='Si'),
+          Diabetes(value='No'), salience=8)
     def ruleHipertension(self):
         self.declare(Fact(plan="Regimen hiposodico"))
 
-    @Rule(Diabetes(value='Si'))
+    @Rule(Diabetes(value='Si'),
+          Hipertension(value='No'), salience=8)
     def ruleDiabetes(self):
-        self.declare(Fact(plan="Regimen hipoglucida"))
+        self.declare(Fact(plan="Regimen hipoglucido"))
 
-    @Rule(EnfermedadCorazon(value='Si'))
-    def ruleCorazon(self):
+    @Rule(Diabetes(value='Si'),
+          Hipertension(value='Si'), salience=9)
+    def ruleDiabetesHipertension(self):
+        self.declare(Fact(plan="Regimen hipoglucido-hiposodico"))
+
+    @Rule(IMC(value='Normal'),
+          Diabetes(value='No'),
+          Hipertension(value='No'),
+          OR(
+            OR(ICC(value='Grave'),
+                ICC(value='Preocupante')),
+            EnfermedadCorazon(value='Si'),
+            TrigliceridosAlto(value='Si'),
+            ColesterolAlto(value='Si')
+          ),
+          salience=7)
+    def ruleHipograso(self):
         self.declare(Fact(plan="Regimen hipograso"))
 
-    @Rule(ColesterolAlto(value='Si'))
-    def ruleColesterol(self):
-        self.declare(Fact(plan="Regimen hipograso"))
-
-    @Rule(TrigliceridosAlto(value='Si'))
-    def ruleTrigliceridos(self):
-        self.declare(Fact(plan="Regimen hipograso"))
-
-    @Rule(IMC(value='Sobrepeso'), Edad(value="Niño"))
+    @Rule(OR(IMC(value='Sobrepeso'),
+             IMC(value='Obeso')), 
+        Edad(value="Niño"), salience=7)
     def ruleSobrepesoNiño(self):
         self.declare(Fact(plan="Regimen sobrepeso-obesidad niño"))
 
-    @Rule(IMC(value='Obeso'), Edad(value="Niño"))
-    def ruleObesoNiño(self):
-        self.declare(Fact(plan="Regimen sobrepeso-obesidad niño"))
-
-    @Rule(IMC(value='Sobrepeso'))
+    @Rule(OR(IMC(value='Sobrepeso'),
+             IMC(value='Obeso')),
+            Edad(value='Adulto'),
+            salience=7)
     def ruleSobrepeso(self):
         self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
-
-    @Rule(IMC(value='Obeso'))
-    def ruleObeso(self):
-        self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
-
-    @Rule(ICC(value='Grave'))
-    def ruleIccGrave(self):
-        self.declare(Fact(plan="Regimen hipograso"))
-
-    @Rule(ICC(value='Preocupante'))
-    def ruleIccPreocupante(self):
-        self.declare(Fact(plan="Regimen hipograso"))
-
-    @Rule(IMC(value='Normal'))
-    def ruleNormal(self):
-        self.declare(Fact(plan="Regimen hipograso"))
 
 @app.route('/get_plan', methods=['POST'])
 def get_nutrition_plan():
@@ -114,18 +110,25 @@ def get_nutrition_plan():
             return jsonify({"error": "Los valores numéricos deben ser positivos"}), 400
     except (ValueError, TypeError):
         return jsonify({"error": "Datos numéricos inválidos"}), 400
-    
+
     campos_texto = ['diabetes', 'hipertension', 'enfermedad_corazon', 'colesterol_alto', 'trigliceridos_alto']
     for campo in campos_texto:
         valor = data.get(campo)
         if not isinstance(valor, str) or valor.capitalize() not in ["Si", "No"]:
             return jsonify({"error": "Datos inválidos en el campo " + campo}), 400
-    
+
     genero = data.get('genero')
     if not isinstance(genero, str) or genero not in ["m", "f"]:
         return jsonify({"error": "Datos inválidos en el campo genero"}), 400
 
-    edad = "Niño" if data.get('edad', 0) < 15 else "Adulto"
+    edad_num = data.get('edad')
+    if edad_num <= 5:
+        edad = "Muy niño"
+    elif edad_num <= 11:
+        edad = "Niño"
+    else:
+        edad = "Adulto"
+
     peso = data.get('peso', 0)
     talla = data.get('talla', 0)
     valor_imc = peso / (talla / 100) ** 2 if talla > 0 else 0
@@ -165,7 +168,7 @@ def get_nutrition_plan():
                    TrigliceridosAlto(value=data.get('trigliceridos_alto').capitalize()))
 
     engine.run()
-
+    print(engine.facts.values())
     plan = next((fact['plan'] for fact in engine.facts.values() if 'plan' in fact),
                 "Regimen hipograso")
     facts = {
@@ -176,4 +179,5 @@ def get_nutrition_plan():
     return jsonify({"plan": planes[plan], "Nombre regimen": plan, "facts": facts})
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0', port = 5000, debug=True)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host= '0.0.0.0', port = port, debug=True)

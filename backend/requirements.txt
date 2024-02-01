@@ -1,5 +1,5 @@
 Flask==3.0.0
-frozendict==2.3.8
+experta==1.9.4
 flask-cors==4.0.0
 numpy
 matplotlib

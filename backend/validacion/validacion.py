@@ -57,15 +57,22 @@ for paciente in pacientes:
             data = response.json()
             nombre_regimen = data.get('Nombre regimen', 'No disponible')
             facts = data.get('facts', 'No disponible')
-            resultados.append({'Nombre regimen': nombre_regimen,  'facts': json.dumps(facts), 'Error': 'Sin error', 'JSON Enviado': json.dumps(paciente)})
+            resultados_paciente = paciente.copy()
+            resultados_paciente.update({
+                "plan": nombre_regimen
+            })
+            resultados.append(resultados_paciente)
         elif response.status_code == 400:
             error_message = response.json().get('error', 'Error desconocido')
-            resultados.append({'Nombre regimen': 'No regimen', 'facts': 'Error', 'Error': error_message, 'JSON Enviado': json.dumps(paciente)})
+            # resultados.append({'Nombre regimen': 'No regimen', 'facts': 'Error', 'Error': error_message, 'JSON Enviado': json.dumps(paciente)})
         else:
-            resultados.append({'Nombre regimen': 'No regimen', 'facts': 'Error', 'Error': f'Error inesperado: {response.status_code}', 'JSON Enviado': json.dumps(paciente)})
+            pass
+            # resultados.append({'Nombre regimen': 'No regimen', 'facts': 'Error', 'Error': f'Error inesperado: {response.status_code}', 'JSON Enviado': json.dumps(paciente)})
     
     except Exception as e:
-        resultados.append({'Error': f'Excepción durante la solicitud: {str(e)}', 'JSON Enviado': json.dumps(paciente)})
+        pass
+        # resultados.append({'Error': f'Excepción durante la solicitud: {str(e)}', 'JSON Enviado': json.dumps(paciente)})
+    print(resultados[-1])
 
 
 df = pd.DataFrame(resultados)

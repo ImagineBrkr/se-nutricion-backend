@@ -586,7 +586,88 @@
             }
         ]
     },
-    "Regimen hipoglucida": {
+    "Regimen hipoglucido": {
+        "Nro_comidas": 5,
+        "Recomendaciones": [
+            "Consumir solo una porción de harina por comida: Arroz (80g) o papa 1 unidad o 1 camote pequeño o yuca o 1 choclo mediano, 100g de menestra u olluco u ocas.",
+            "Consumir todos los días frutas en porción aparte de los jugos.",
+            "Consumir verduras en diferentes preparaciones a diario",
+            "Consumir alimentos integrales como avena en hojuelas, galletas integrales, cereal integral.",
+            "NO CONSUMIR Azúcares concentrados como miel, mermelada, azúcar",
+            "NO CONSUMIR Bebidas gaseosas o jugos artificiales, bebidas alcohólicas, café.",
+            "NO CONSUMIR Carne de cerdo, piel del pollo, mayonesa, mantequilla, jamón."
+        ],
+        "Alimentos": [
+            {
+                "Tipo": "Desayuno - Opción 1",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Bebida con leche descremada (1 vaso, 200ml)",
+                    "Galleta integral (2 unidades) o pan integral (1 unidad)",
+                    "Huevo cocido (1 unidad, 2 veces en semana) o clara cocida (1-2 unidades diaria)"
+                ]
+            },
+            {
+                "Tipo": "Desayuno - Opción 2",
+                "Frecuencia": "Diario",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Cereal (Avena, Quinua, Soya, Chufla, 1 taza, 200ml)",
+                    "1 porción de frutas o en jugo",
+                    "Huevo cocido (1 unidad, 2 veces en semana) o clara cocida (1 unidad diaria)"
+                ]
+            },
+            {
+                "Tipo": "Agregados para el desayuno",
+                "Frecuencia": "3 veces por semana",
+                "Hora": "Mañana",
+                "Opciones": [
+                    "Jamón de pavita o queso fresco light (50g o 3 tajadas)"
+                ]
+            },
+            {
+                "Tipo": "Media Mañana",
+                "Frecuencia": "Diario",
+                "Hora": "Media mañana",
+                "Opciones": [
+                    "1 o 2 frutas",
+                    "Medio litro de agua"
+                ]
+            },
+            {
+                "Tipo": "Almuerzo",
+                "Frecuencia": "Diario",
+                "Hora": "Mediodía",
+                "Opciones": [
+                    "Sopa de verduras (habas, zapallo, acelga, espinacas)",
+                    "Arroz (80g), papa (1 unidad), camote pequeño, yuca, choclo mediano, menestra (100g), olluco, ocas (Elegir uno, no mezclar)",
+                    "Ensalada de verduras sancochadas",
+                    "Pollo sin piel, pescado, pavita, gallina, atún (150g) - Carnes de otro tipo: 1 vez por semana",
+                    "Refresco sin azúcar o con edulcorante"
+                ]
+            },
+            {
+                "Tipo": "Media Tarde",
+                "Frecuencia": "Diario",
+                "Hora": "Media tarde",
+                "Opciones": [
+                    "Yogurt descremado (150 ml) con frutos secos (excepto maní) o 1 fruta (plátano máximo 2 veces por semana)"
+                ]
+            },
+            {
+                "Tipo": "Comida",
+                "Frecuencia": "Diario",
+                "Hora": "Noche",
+                "Opciones": [
+                    "Sopa de verduras con pollo, gallina o pescado",
+                    "100g de carne blanca + verduras + refresco sin azúcar o con edulcorante",
+                    "Leche descremada con galleta integral, 1 tostada o pan integral/de centeno"
+                ]
+            }
+        ]
+    },
+    "Regimen hipoglucido-hiposodico": {
         "Nro_comidas": 5,
         "Recomendaciones": [
             "Consumir solo una porción de harina por comida: Arroz (80g) o papa 1 unidad o 1 camote pequeño o yuca o 1 choclo mediano, 100g de menestra u olluco u ocas.",
