@@ -1,18 +1,23 @@
 from collections.abc import Mapping
 import os
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from experta import *
 import json
 from collections.abc import Mapping
 from flask_cors import CORS
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from sqlalchemy.exc import IntegrityError
+from datetime import datetime
 
 with open('planes.json', 'r', encoding='utf-8') as f:
     planes = json.load(f)
 
-app = Flask(__name__)
-CORS(app)
-
+## SISTEMA EXPERTO
+    
 class ICC(Fact):
     value = None
 
@@ -86,8 +91,97 @@ class NutritionPlan(KnowledgeEngine):
     def ruleSobrepeso(self):
         self.declare(Fact(plan="Regimen sobrepeso-obesidad"))
 
+## API
+
+load_dotenv()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+db = SQLAlchemy(app)
+app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
+jwt = JWTManager(app)
+CORS(app)
+
+class Usuario(db.Model):
+    __tablename__ = "usuarios"
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(255), nullable=False)
+    usuario = db.Column(db.String(255), unique=True, nullable=False)
+    contraseña = db.Column(db.String(255), nullable=False)
+
+class NutritionRequest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    request_data = db.Column(db.JSON, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __init__(self, user_id, request_data):
+        self.user_id = user_id
+        self.request_data = request_data
+
+@app.route('/registro', methods=['POST'])
+def registro():
+    data = request.json
+    hashed_password = generate_password_hash(data['contraseña'])
+    nuevo_usuario = Usuario(nombre=data['nombre'], usuario=data['usuario'], contraseña=hashed_password)
+    try:
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({'error': 'El nombre de usuario ya existe'}), 409
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    usuario = Usuario.query.filter_by(usuario=data['usuario']).first()
+    if usuario and check_password_hash(usuario.contraseña, data['contraseña']):
+        access_token = create_access_token(identity=usuario.id)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify({'mensaje': 'Usuario o contraseña incorrectos'}), 401
+
+@app.route('/prueba', methods=['GET'])
+@jwt_required(optional=True)
+def prueba_endpoint():
+    current_user_id = get_jwt_identity()
+    if current_user_id:
+        return jsonify({'id del usuario': current_user_id}), 200
+    else:
+        return jsonify({'mensaje': 'No está logeado'}), 200
+
+@app.route('/mis_datos', methods=['GET'])
+@jwt_required()
+def obtener_mis_datos():
+    user_id = get_jwt_identity()
+    try:
+        usuario = Usuario.query.filter_by(id=user_id).first()
+        if usuario:
+            datos_usuario = {
+                'nombre': usuario.nombre,
+                'usuario': usuario.usuario,
+            }
+            return jsonify(datos_usuario), 200
+        else:
+            return jsonify({'error': 'Usuario no encontrado'}), 404
+    except Exception as e:
+        return jsonify({'error': 'No se pudieron obtener los datos del usuario'}), 500
+
+@app.route('/mis_planes', methods=['GET'])
+@jwt_required()
+def obtener_mis_planes():
+    user_id = get_jwt_identity()
+    try:
+        planes = NutritionRequest.query.filter_by(user_id=user_id).all()
+        lista_planes = [{'id': plan.id, 'datos': plan.request_data, 'creado_en': plan.created_at} for plan in planes]
+        return jsonify(lista_planes), 200
+    except Exception as e:
+        return jsonify({'error': 'No se pudieron obtener los planes'}), 500
+
 @app.route('/get_plan', methods=['POST'])
+@jwt_required(optional=True)
 def get_nutrition_plan():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     campos_requeridos = ['genero', 'edad', 'peso', 'talla', 'diabetes', 'hipertension',
@@ -176,6 +270,10 @@ def get_nutrition_plan():
         "imc": imc,
         "icc": icc
     }
+    if user_id:
+        new_request = NutritionRequest(user_id=user_id, request_data=data)
+        db.session.add(new_request)
+        db.session.commit()
     return jsonify({"plan": planes[plan], "Nombre regimen": plan, "facts": facts})
 
 if __name__ == '__main__':
