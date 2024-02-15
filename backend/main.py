@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from sqlalchemy.exc import IntegrityError
-from datetime import datetime
+from datetime import datetime, timedelta
 
 with open('planes.json', 'r', encoding='utf-8') as f:
     planes = json.load(f)
@@ -100,6 +100,7 @@ db = SQLAlchemy(app)
 app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
 jwt = JWTManager(app)
 CORS(app)
+expires = timedelta(days=36500)
 
 class Usuario(db.Model):
     __tablename__ = "usuarios"
@@ -126,7 +127,7 @@ def registro():
     try:
         db.session.add(nuevo_usuario)
         db.session.commit()
-        access_token = create_access_token(identity=nuevo_usuario.id)
+        access_token = create_access_token(identity=nuevo_usuario.id, expires_delta=expires)
         return jsonify({'mensaje': 'Usuario registrado exitosamente', 'access_token': access_token}), 201
     except IntegrityError:
         db.session.rollback()
@@ -137,7 +138,7 @@ def login():
     data = request.json
     usuario = Usuario.query.filter_by(usuario=data['usuario']).first()
     if usuario and check_password_hash(usuario.contraseña, data['password']):
-        access_token = create_access_token(identity=usuario.id)
+        access_token = create_access_token(identity=usuario.id, expires_delta=expires)
         return jsonify(access_token=access_token), 200
     else:
         return jsonify({'mensaje': 'Usuario o contraseña incorrectos'}), 401
