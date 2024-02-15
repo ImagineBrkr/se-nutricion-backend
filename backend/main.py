@@ -106,7 +106,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
     usuario = db.Column(db.String(255), unique=True, nullable=False)
-    contraseña = db.Column(db.String(255), nullable=False)
+    contraseña = db.Column(db.String(255), nullable=False, )
 
 class NutritionRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -121,12 +121,13 @@ class NutritionRequest(db.Model):
 @app.route('/registro', methods=['POST'])
 def registro():
     data = request.json
-    hashed_password = generate_password_hash(data['contraseña'])
+    hashed_password = generate_password_hash(data['password'])
     nuevo_usuario = Usuario(nombre=data['nombre'], usuario=data['usuario'], contraseña=hashed_password)
     try:
         db.session.add(nuevo_usuario)
         db.session.commit()
-        return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
+        access_token = create_access_token(identity=nuevo_usuario.id)
+        return jsonify({'mensaje': 'Usuario registrado exitosamente', 'access_token': access_token}), 201
     except IntegrityError:
         db.session.rollback()
         return jsonify({'error': 'El nombre de usuario ya existe'}), 409
@@ -135,7 +136,7 @@ def registro():
 def login():
     data = request.json
     usuario = Usuario.query.filter_by(usuario=data['usuario']).first()
-    if usuario and check_password_hash(usuario.contraseña, data['contraseña']):
+    if usuario and check_password_hash(usuario.contraseña, data['password']):
         access_token = create_access_token(identity=usuario.id)
         return jsonify(access_token=access_token), 200
     else:
