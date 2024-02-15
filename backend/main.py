@@ -122,6 +122,9 @@ class NutritionRequest(db.Model):
 @app.route('/registro', methods=['POST'])
 def registro():
     data = request.json
+    if not all(field in data for field in ['nombre', 'usuario', 'password']):
+        return jsonify({'error': 'Falta nombre, usuario o contraseña'}), 400
+
     hashed_password = generate_password_hash(data['password'])
     nuevo_usuario = Usuario(nombre=data['nombre'], usuario=data['usuario'], contraseña=hashed_password)
     try:
@@ -136,6 +139,9 @@ def registro():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
+    if not all(field in data for field in ['usuario', 'password']):
+        return jsonify({'error': 'Falta usuario o contraseña'}), 400
+
     usuario = Usuario.query.filter_by(usuario=data['usuario']).first()
     if usuario and check_password_hash(usuario.contraseña, data['password']):
         access_token = create_access_token(identity=usuario.id, expires_delta=expires)
