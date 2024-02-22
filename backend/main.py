@@ -280,7 +280,7 @@ def get_nutrition_plan():
         "valor_imc": valor_imc
     }
     if user_id:
-        new_request = NutritionRequest(user_id=user_id, request_data={**data, **facts})
+        new_request = NutritionRequest(user_id=user_id, request_data={**facts, **data})
         db.session.add(new_request)
         db.session.commit()
     return jsonify({"plan": planes[plan], "Nombre regimen": plan, "facts": facts})
