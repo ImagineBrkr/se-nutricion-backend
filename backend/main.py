@@ -274,7 +274,7 @@ def get_nutrition_plan():
     plan = next((fact['plan'] for fact in engine.facts.values() if 'plan' in fact),
                 "Regimen hipograso")
     facts = {
-        "edad": edad,
+        "edad_val": edad,
         "imc": imc,
         "icc": icc,
         "valor_imc": valor_imc
