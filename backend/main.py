@@ -180,7 +180,7 @@ def obtener_mis_datos():
 def obtener_mis_planes():
     user_id = get_jwt_identity()
     try:
-        planes = NutritionRequest.query.filter_by(user_id=user_id).all()
+        planes = NutritionRequest.query.filter_by(user_id=user_id).order_by(NutritionRequest.created_at.desc()).all()
         lista_planes = [{'id': plan.id, 'datos': plan.request_data, 'creado_en': plan.created_at} for plan in planes]
         return jsonify(lista_planes), 200
     except Exception as e:
